@@ -5,16 +5,11 @@ import { findAllByDisplayValue } from "@testing-library/react";
 
 class LoginMinsun extends React.Component {
   constructor() {
-    //super() 호출하는이유: 부모 클래스의 생성자 함수를 불러준다. 부모클래스로에 있는 변수에 접근하기 위해선 필요하다.
-    //super() 인자로 props를 전달하면 리액트는 컴포넌트 넘어 props에 this.props로 접근 가능하도록 만든다.
     super();
-    //초기 상태값 설정
-    //페이지가 렌더하기 위해 필요한데이터 -> 로그인값, 비번값, 비번 보이는 버튼, 인풋한글자씩 이상이면 버튼활성화, 인풋validation
     this.state = {
       id: "",
       pw: "",
-      validId: false,
-      validPw: false,
+      validLoginInfo: false,
       validText: "",
       showPw: false,
     };
@@ -28,21 +23,19 @@ class LoginMinsun extends React.Component {
     });
   };
 
-  togglePw = () => {
+  toggleShowPw = () => {
     this.setState({
       showPw: !this.state.showPw,
     });
   };
 
-  goToMain = (evt) => {
+  validateLogin = (evt) => {
     evt.preventDefault();
     const checkId = this.state.id.includes("@");
     const checkPw = this.state.pw.length > 4;
-    const { validId, validPw } = this.state;
     if (checkId && checkPw) {
       this.setState({
-        [validId]: true,
-        [validPw]: true,
+        validLoginInfo: true,
       });
       alert("로그인 성공! (❁´◡`❁)");
       this.props.history.push("/main-minsun");
@@ -79,18 +72,15 @@ class LoginMinsun extends React.Component {
                 id="pw"
                 onChange={this.changeInput}
                 className="loginInput"
-                type={this.state.showPw ? "text" : "password"}
+                type={this.state.toggleShowPw ? "text" : "password"}
                 placeholder="비밀번호"
               />
-              <span className="showPw" onClick={this.togglePw}>
-                {!this.state.showPw ? "Show" : "Hide"}
+              <span className="showPw" onClick={this.toggleShowPw}>
+                {!this.state.toggleShowPw ? "Show" : "Hide"}
               </span>
             </div>
-            {/* btn attr disabled 나중에 추가하기 
-        btn에 disabled 속성을 추가해주기 위해 boelean 값과 함께 추가해준다.
-        */}
             <button
-              onClick={this.goToMain}
+              onClick={this.validateLogin}
               className="loginBtn"
               type="submit"
               disabled={activeLoginBtn ? false : true}
