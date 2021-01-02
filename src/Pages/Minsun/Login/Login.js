@@ -1,8 +1,6 @@
 import React from "react";
 import "./Login.scss";
 import { withRouter } from "react-router-dom";
-import { findAllByDisplayValue } from "@testing-library/react";
-
 class LoginMinsun extends React.Component {
   constructor() {
     super();
@@ -15,6 +13,7 @@ class LoginMinsun extends React.Component {
     };
   }
 
+  //인풋 상태 값 받아오는 함수
   changeInput = (evt) => {
     const { id, value } = evt.target;
     //when id's input clicked -> evt.target.id === 'id'
@@ -23,16 +22,19 @@ class LoginMinsun extends React.Component {
     });
   };
 
+  //비밀번호 값 숨기고 보여주게 하는 함수
   toggleShowPw = () => {
     this.setState({
       showPw: !this.state.showPw,
     });
   };
 
+  //로그인 정보 확인하는 함수
   validateLogin = (evt) => {
     evt.preventDefault();
     const checkId = this.state.id.includes("@");
     const checkPw = this.state.pw.length > 4;
+    //조건이 둘다 만족하는 경우
     if (checkId && checkPw) {
       this.setState({
         validLoginInfo: true,
@@ -72,11 +74,11 @@ class LoginMinsun extends React.Component {
                 id="pw"
                 onChange={this.changeInput}
                 className="loginInput"
-                type={this.state.toggleShowPw ? "text" : "password"}
+                type={this.state.showPw ? "text" : "password"}
                 placeholder="비밀번호"
               />
               <span className="showPw" onClick={this.toggleShowPw}>
-                {!this.state.toggleShowPw ? "Show" : "Hide"}
+                {!this.state.showPw ? "Show" : "Hide"}
               </span>
             </div>
             <button
@@ -98,4 +100,4 @@ class LoginMinsun extends React.Component {
   }
 }
 
-export default LoginMinsun;
+export default withRouter(LoginMinsun);

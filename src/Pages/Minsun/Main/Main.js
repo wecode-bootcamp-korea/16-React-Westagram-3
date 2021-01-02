@@ -1,102 +1,47 @@
 import React from "react";
 import "./Main.scss";
 
+import Nav from "../../../Components/Nav/Nav";
+import Lists from "../../../Components/List/Lists";
 class MainMinsun extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      inputVal: "",
+      commentInfo: [
+        { userId: "nameauction", cmt: "Happly New Year✨🎄🌝" },
+        { userId: "pppp", cmt: "Goddess 😍" },
+      ],
+    };
+  }
+
+  // 댓글 인풋 값 함수
+  changeInput = (evt) => {
+    this.setState({
+      inputVal: evt.target.value,
+    });
+  };
+
+  //댓글 추가 함수(댓글 추가되면서 댓글정보 상태값 업댓)
+  addComment = (evt) => {
+    evt.preventDefault();
+    this.setState({
+      commentInfo: this.state.commentInfo.concat([
+        {
+          userId: "usersssss",
+          cmt: this.state.inputVal,
+        },
+      ]),
+      inputVal: "",
+    });
+  };
+
   render() {
+    const activeCmtBtn = this.state.inputVal.length > 0;
+
     return (
       <div className="Main">
-        <header className="navbar">
-          <nav className="navContainer">
-            <h1 className="logo">
-              <a href="#">Westagram</a>
-            </h1>
-            <div className="searchBar" id="searchArea">
-              <input className="searchInput" type="text" placeholder="검색" />
-              <img
-                className="searchIcon"
-                src="/images/Minsun/loupe.png"
-                alt="search"
-              />
-              <div className="searchBox hide">
-                <ul className="searchBoxList"></ul>
-              </div>
-            </div>
-            <div className="navMenu">
-              <ul className="menu">
-                <li className="menuItems">
-                  <a href="#">
-                    <img src="/images/Minsun/home.png" alt="home" />
-                  </a>
-                </li>
-                <li className="menuItems">
-                  <a href="#">
-                    <img src="/images/Minsun/send.png" alt="send message" />
-                  </a>
-                </li>
-                <li className="menuItems">
-                  <a href="#">
-                    <img src="/images/Minsun/explore.png" alt="explore" />
-                  </a>
-                </li>
-                <li className="menuItems">
-                  <a href="#">
-                    <img src="/images/Minsun/heart.png" alt="heart" />
-                  </a>
-                </li>
-                <li className="menuItems">
-                  <button
-                    className="accountInfoBtn"
-                    id="profileBtn"
-                    type="button"
-                  >
-                    <img
-                      className="profileImg"
-                      src="/images/Minsun/profile.jpg"
-                      alt="profile"
-                    />
-                  </button>
-                  <div className="profileMenuBox hide" id="downMenu">
-                    <a className="menuBoxItem" href="#">
-                      <img
-                        className="menuBoxIcon"
-                        src="/images/Minsun/account.png"
-                        alt="profile"
-                      />
-                      프로필
-                    </a>
-                    <a className="menuBoxItem" href="#">
-                      <img
-                        className="menuBoxIcon"
-                        src="/images/Minsun/bookmark.png"
-                        alt="bookmark"
-                      />
-                      저장됨
-                    </a>
-                    <a className="menuBoxItem" href="#">
-                      <img
-                        className="menuBoxIcon"
-                        src="/images/Minsun/settings.png"
-                        alt="settings"
-                      />
-                      설정
-                    </a>
-                    <a className="menuBoxItem" href="#">
-                      <img
-                        className="menuBoxIcon"
-                        src="/images/Minsun/switch.png"
-                        alt="switch"
-                      />
-                      계정 전환
-                    </a>
-                    <a className="menuBoxItem" href="#">
-                      로그아웃
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </header>
+        <Nav />
         <main className="feedContainer">
           <div className="mainLeftContainer">
             <section className="storyFeeds">
@@ -225,161 +170,29 @@ class MainMinsun extends React.Component {
                   댓글 11,299개 모두 보기
                 </button>
                 <div className="feedComments">
-                  <ul className="commentsList" id="list1">
-                    <li className="commentItem">
-                      <a className="userId" href="#">
-                        nameauction
-                      </a>
-                      <p>Happly New Year✨🎄🌝</p>
-                      <button className="addLikeToCommentBtn" type="button">
-                        <img src="/images/Minsun/heart.png" alt="like" />
-                      </button>
-                    </li>
-                    <li className="commentItem">
-                      <a className="userId" href="#">
-                        dudagraziii
-                      </a>
-                      <p>Goddess 😍</p>
-                      <button className="addLikeToCommentBtn" type="button">
-                        <img
-                          className="liked"
-                          src="/images/Minsun/heart.png"
-                          alt="like"
-                        />
-                      </button>
-                    </li>
+                  <ul className="commentsList">
+                    <Lists commentInfos={this.state.commentInfo} />
                   </ul>
                 </div>
                 <span className="postedDate">5일 전</span>
               </div>
               <div className="commentContainer">
                 <form className="commentForm" action="#">
-                  <div className="commnetForm">
-                    <input
-                      className="commentInput"
-                      id="input1"
-                      type="text"
-                      placeholder="댓글 달기..."
-                    />
-                    <button
-                      className="commentBtn"
-                      id="btn1"
-                      type="submit"
-                      disabled
-                    >
-                      게시
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </article>
-            <article className="mainFeeds" id="feed2">
-              <div className="mainFeedProfile">
-                <a href="#">
-                  <img
-                    className="profileImg"
-                    src="https://scontent-ssn1-1.cdninstagram.com/v/t51.2885-19/s150x150/28156252_202954810453161_1736762118826360832_n.jpg?_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_ohc=NrF5WDzLS9IAX9fXVRS&tp=1&oh=fd8581d231e523ed6e4e8bb879e85eb2&oe=600B1018"
-                    alt="bestvacations profile"
+                  <input
+                    onChange={this.changeInput}
+                    className="commentInput"
+                    value={this.state.inputVal}
+                    type="text"
+                    placeholder="댓글 달기..."
                   />
-                </a>
-                <a className="userId" href="#">
-                  bestvacations
-                </a>
-                <button className="moreBtn" type="button">
-                  <img src="/images/Minsun/more.png" alt="mores" />
-                </button>
-              </div>
-              <div className="feedImg">
-                <img
-                  src="https://scontent-ssn1-1.cdninstagram.com/v/t51.2885-15/e35/p1080x1080/131913695_210192177266401_1385500136233166656_n.jpg?_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_cat=1&_nc_ohc=wr6qUBRdBBwAX94-C4Q&tp=1&oh=0b444c342c450d52bd45b54c7400b48d&oe=600CB737"
-                  alt="feed"
-                />
-              </div>
-              <div className="feedInfoContainer">
-                <div className="feedBtns">
-                  <button className="feedBtn" type="button">
-                    <img src="/images/Minsun/heart.png" alt="like" />
+                  <button
+                    onClick={this.addComment}
+                    className="commentBtn"
+                    type="submit"
+                    disabled={activeCmtBtn ? false : true}
+                  >
+                    게시
                   </button>
-                  <button className="feedBtn" type="button">
-                    <img
-                      src="/images/Minsun/comment-white-oval-bubble.png"
-                      alt="message"
-                    />
-                  </button>
-                  <button className="feedBtn" type="button">
-                    <img src="/images/Minsun/send.png" alt="send message" />
-                  </button>
-                  <button className="feedBtn" type="button">
-                    <img src="/images/Minsun/bookmark.png" alt="bookmark" />
-                  </button>
-                </div>
-                <div className="feedContent">
-                  <p className="likedUserInfo">
-                    <button type="button">좋아요 82,704개</button>
-                  </p>
-                  <p className="postedUserInfo">
-                    <button className="userId" type="button">
-                      bestvacations
-                    </button>
-                    Dreaming of Christmas in NYC ❄️...
-                    <button className="moreCommentsBtn" type="button">
-                      더 보기
-                    </button>
-                  </p>
-                </div>
-                <button className="moreCommentsBtn" type="button">
-                  댓글 11,299개 모두 보기
-                </button>
-                <div className="feedComments">
-                  <ul className="commentsList" id="list2">
-                    <li className="commentItem">
-                      <a className="userId" href="#">
-                        rubyperez21
-                      </a>
-                      <p>
-                        <a className="taged" href="#">
-                          @emiedray
-                        </a>
-                      </p>
-                      <button className="addLikeToCommentBtn" type="button">
-                        <img src="/images/Minsun/heart.png" alt="like" />
-                      </button>
-                    </li>
-                    <li className="commentItem">
-                      <a className="userId" href="#">
-                        imanaileen
-                      </a>
-                      <p>
-                        <a className="taged" href="#">
-                          @vrkn_
-                        </a>
-                      </p>
-                      <button className="addLikeToCommentBtn" type="button">
-                        <img src="/images/Minsun/heart.png" alt="like" />
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-                <span className="postedDate">5일 전</span>
-              </div>
-              <div className="commentContainer">
-                <form className="commentForm" action="#">
-                  <div className="commnetForm">
-                    <input
-                      className="commentInput"
-                      id="input2"
-                      type="text"
-                      placeholder="댓글 달기..."
-                    />
-                    <button
-                      className="commentBtn"
-                      id="btn2"
-                      type="submit"
-                      disabled
-                    >
-                      게시
-                    </button>
-                  </div>
                 </form>
               </div>
             </article>
