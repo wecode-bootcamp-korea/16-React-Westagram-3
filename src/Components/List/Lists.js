@@ -3,12 +3,12 @@ import "./Lists.scss";
 
 class Lists extends React.Component {
   render() {
-    const { commentInfos } = this.props;
+    const { commentInfo } = this.props;
     return (
-      <>
-        {commentInfos.map((el) => {
+      <ul className="commentsList">
+        {commentInfo.map((el, idx) => {
           return (
-            <li className="commentItem">
+            <li key={idx} className="commentItem">
               <a className="userId" href="#">
                 {el.userId}
               </a>
@@ -23,7 +23,7 @@ class Lists extends React.Component {
             </li>
           );
         })}
-      </>
+      </ul>
     );
   }
 }
