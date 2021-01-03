@@ -2,6 +2,19 @@ import React from "react";
 import "./Nav.scss";
 
 class Nav extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isHide: true,
+    };
+  }
+
+  clickHandler = () => {
+    this.setState({
+      isHide: !this.state.isHide,
+    });
+  };
+
   render() {
     return (
       <header className="navbar">
@@ -44,6 +57,7 @@ class Nav extends React.Component {
               </li>
               <li className="menuItems">
                 <button
+                  onClick={this.clickHandler}
                   className="accountInfoBtn"
                   id="profileBtn"
                   type="button"
@@ -54,7 +68,13 @@ class Nav extends React.Component {
                     alt="profile"
                   />
                 </button>
-                <div className="profileMenuBox hide" id="downMenu">
+                {/* "profileMenuBox hide" */}
+                <div
+                  className={
+                    this.state.isHide ? "profileMenuBox hide" : "profileMenuBox"
+                  }
+                  id="downMenu"
+                >
                   <a className="menuBoxItem" href="#">
                     <img
                       className="menuBoxIcon"
