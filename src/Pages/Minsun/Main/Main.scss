@@ -325,45 +325,6 @@
               }
             }
           }
-
-          .recomendList {
-            padding: 8px 0;
-
-            .recomendItem {
-              width: 293px;
-              height: 48px;
-              list-style: none;
-              display: flex;
-              align-items: center;
-              /* padding: 8px 16px; */
-
-              a {
-                &:first-child {
-                  margin-right: 5px;
-                } 
-              }
-
-              .userImg {
-                width: 32px;
-                height: 32px;
-                border: 1px solid rgba(230, 230, 230, 0.5);;
-                border-radius: 50%;
-              }
-
-              .followBtn {
-                border: none;
-                color:rgb(0, 149, 246);
-                font-weight: 700;
-                background: #FAFAFA;
-                padding: 0;
-                margin-left: auto;
-
-                &:hover {
-                  cursor: pointer;
-                }
-              }
-            }
-          }
         }
 
         .userInfoContainer {
