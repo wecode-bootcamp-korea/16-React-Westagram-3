@@ -3,15 +3,25 @@ import "./Main.scss";
 
 import Nav from "../../../Components/Nav/Nav";
 import Lists from "../../../Components/List/Lists";
-import StoryFeeds from "./Components/StoryFeed";
+import StoryFeed from "./Components/StoryFeed";
 class MainMinsun extends React.Component {
   constructor() {
     super();
     this.state = {
       inputVal: "",
       commentInfo: [
-        { userId: "nameauction", cmt: "Happly New Year✨🎄🌝" },
-        { userId: "pppp", cmt: "Goddess 😍" },
+        {
+          id: Math.random() * 1000,
+          userId: "nameauction",
+          cmt: "Happly New Year✨🎄🌝",
+          liked: false,
+        },
+        {
+          id: Math.random() * 1000,
+          userId: "pppp",
+          cmt: "Goddess 😍",
+          liked: false,
+        },
       ],
     };
   }
@@ -29,11 +39,26 @@ class MainMinsun extends React.Component {
     this.setState({
       commentInfo: this.state.commentInfo.concat([
         {
+          id: Math.random() * 1000,
           userId: "usersssss",
           cmt: this.state.inputVal,
+          liked: false,
         },
       ]),
       inputVal: "",
+    });
+  };
+
+  //댓글 좋아요 기능
+  toggleLike = (selectedId) => {
+    let commentsData = [...this.state.commentInfo];
+    const idx = this.state.commentInfo.findIndex((el) => el.id === selectedId);
+    commentsData[idx] = {
+      ...commentsData[idx],
+      liked: !commentsData[idx].liked,
+    };
+    this.setState({
+      commentInfo: commentsData,
     });
   };
 
@@ -45,7 +70,7 @@ class MainMinsun extends React.Component {
         <Nav />
         <main className="feedContainer">
           <div className="mainLeftContainer">
-            <StoryFeeds />
+            <StoryFeed />
             <article className="mainFeeds" id="feed1">
               <div className="mainFeedProfile">
                 <a href="#">
@@ -113,7 +138,10 @@ class MainMinsun extends React.Component {
                   댓글 11,299개 모두 보기
                 </button>
                 <div className="feedComments">
-                  <Lists commentInfo={this.state.commentInfo} />
+                  <Lists
+                    toggleLike={this.toggleLike}
+                    commentInfo={this.state.commentInfo}
+                  />
                 </div>
                 <span className="postedDate">5일 전</span>
               </div>

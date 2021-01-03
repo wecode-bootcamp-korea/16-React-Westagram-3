@@ -1,22 +1,29 @@
 import React from "react";
 import "./Lists.scss";
-
 class Lists extends React.Component {
   render() {
     const { commentInfo } = this.props;
     return (
       <ul className="commentsList">
-        {commentInfo.map((el, idx) => {
+        {commentInfo.map((el) => {
           return (
-            <li key={idx} className="commentItem">
+            <li key={el.id} className="commentItem">
               <a className="userId" href="#">
                 {el.userId}
               </a>
               <p>{el.cmt}</p>
-              <button className="addLikeToCommentBtn" type="button">
+              <button
+                onClick={() => this.props.toggleLike(el.id)}
+                className="addLikeToCommentBtn"
+                type="button"
+              >
                 <img
                   className="liked"
-                  src="/images/Minsun/heart.png"
+                  src={
+                    !el.liked
+                      ? "/images/Minsun/heart.png"
+                      : "/images/Minsun/redheart.png"
+                  }
                   alt="like"
                 />
               </button>

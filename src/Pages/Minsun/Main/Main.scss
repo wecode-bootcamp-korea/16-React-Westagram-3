@@ -17,52 +17,6 @@
       width: 614px;
       margin-right: 28px;
 
-      .storyFeeds {
-        width: 614px;
-        background: #fff;
-        border: 1px solid #DBDBDB;
-        border-radius: 3px;
-        padding: 16px 10px;
-        margin-bottom: 24px;
-
-        .storyLists {
-          display: flex;
-          padding-left: 0;
-
-          .storyItems {
-            list-style: none;
-            margin: 0 4px;
-
-            a {
-              color: #262626;
-              font-size: 12px;
-              text-decoration: none;
-
-              .activeStory {
-                width: 64px;
-                height: 64px;
-                border: 2px double transparent;
-                border-radius: 50%;
-                background-image: linear-gradient(white, white), linear-gradient(45deg, #F99848, #CC3C95);
-                background-origin: border-box;
-                background-clip: content-box, border-box;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                img {
-                  display: block;
-                  width: 56px;
-                  height: 56px;
-                  border: 1px solid rgba(230, 230, 230, 0.9);
-                  border-radius: 50%;
-                }
-              }
-            }
-          }
-        }
-      }
-
       /* main feeds */
       .mainFeeds {
         width: 614px;
