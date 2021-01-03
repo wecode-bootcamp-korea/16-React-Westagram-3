@@ -1,0 +1,71 @@
+nav {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1;
+  box-shadow: 0 2px 2px -2px gray;
+
+  .navWrap {
+    display: flex;
+    height: 60px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+
+    .logo {
+      font-family: 'lobster', cursive;
+      font-size: 30px;
+      text-align: center;
+      margin-right: 200px;
+    }
+
+    .searchWrap {
+      display: flex;
+      justify-content: center;
+      position: relative;
+
+      .searchBar {
+        width: 210px;
+        height: 28px;
+        margin: auto;
+        text-align: center;
+        background-color: rgb(248, 247, 247);
+        border: 1px solid lightgray;
+        border-radius: 3px;
+        outline: none;
+      }
+
+      .searchBarImg {
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        top: 10px;
+        left: 80px;
+      }
+    }
+
+
+
+    .nav_menus {
+      display: flex;
+      list-style-type: none;
+      padding-left: 200px;
+
+      img {
+        width: 24px;
+        height: 24px;
+        margin: 10px;
+      }
+
+      .profilePic {
+        border: 1px solid gray;
+        border-radius: 50%;
+      }
+    }
+
+
+  }
+
+
+}

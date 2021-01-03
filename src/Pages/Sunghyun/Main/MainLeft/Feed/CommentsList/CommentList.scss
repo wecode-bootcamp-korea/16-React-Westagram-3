@@ -1,0 +1,21 @@
+.cmtList {
+  position: relative;
+
+  .userId {
+    font-weight: 700;
+    margin-right: 10px;
+  }
+
+  button {
+    position: absolute;
+    right: 5px;
+    background-color: white;
+    cursor: pointer;
+    border: none;
+    outline-style: none;
+
+    .like {
+      width: 18px;
+    }
+  }
+}

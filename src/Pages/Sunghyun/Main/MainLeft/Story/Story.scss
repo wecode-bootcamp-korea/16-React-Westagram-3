@@ -1,0 +1,34 @@
+.story {
+  background: white;
+  border: 1px solid lightgray;
+  height: 120px;
+  border-radius: 3px;
+  margin-bottom: 30px;
+  align-content: center;
+
+  .container {
+    display: flex;
+    width: 614px;
+    height: 100%;
+    list-style-type: none;
+    align-items: center;
+    overflow: scroll;
+
+    li {
+      
+      img {
+        width: 64px;
+        height: 64px;
+        border: 1px solid lightgray;
+        border-radius: 50%;
+        margin-left: 18px;
+        
+      }
+    }
+  }
+
+  .container::-webkit-scrollbar { 
+    display: none;
+  }
+
+}
