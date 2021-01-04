@@ -34,10 +34,11 @@ class MainMinsun extends React.Component {
   //댓글 추가 함수(댓글 추가되면서 댓글정보 상태값 업댓)
   addComment = (evt) => {
     evt.preventDefault();
+    const { commentInfo } = this.state;
     this.setState({
       commentInfo: this.state.commentInfo.concat([
         {
-          id: Math.random() * 1000,
+          id: commentInfo.length + 1,
           userId: "usersssss",
           cmt: this.state.inputVal,
           liked: false,
