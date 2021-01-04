@@ -10,21 +10,18 @@ class MainMinsun extends React.Component {
     super();
     this.state = {
       inputVal: "",
-      commentInfo: [
-        {
-          id: Math.random() * 1000,
-          userId: "nameauction",
-          cmt: "Happly New Year✨🎄🌝",
-          liked: false,
-        },
-        {
-          id: Math.random() * 1000,
-          userId: "pppp",
-          cmt: "Goddess 😍",
-          liked: false,
-        },
-      ],
+      commentInfo: [],
     };
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:3000/data/data.json", { method: "GET" })
+      .then((res) => res.json())
+      .then((res) => {
+        this.setState({
+          commentInfo: res.data,
+        });
+      });
   }
 
   // 댓글 인풋 값 함수
