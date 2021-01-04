@@ -1,6 +1,6 @@
 import React from "react";
-import "./StoryFeed.scss";
 import STORYFEEDINFO from "./StoryFeedData";
+import "./StoryFeed.scss";
 
 class StoryFeed extends React.Component {
   constructor() {
