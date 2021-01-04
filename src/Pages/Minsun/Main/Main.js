@@ -5,6 +5,7 @@ import Nav from "../../../Components/Nav/Nav";
 import Lists from "../../../Components/List/Lists";
 import StoryFeed from "./Components/StoryFeed/StoryFeed";
 import RecommendList from "./Components/RecommendList/RecommendList";
+import FooterMenu from "./Components/FooterMenu/FooterMenu";
 class MainMinsun extends React.Component {
   constructor() {
     super();
@@ -37,17 +38,7 @@ class MainMinsun extends React.Component {
     const { commentInfo } = this.state;
     this.setState({
       //스프레드 연산자로 표현하는 방법은 노션자료 참고
-      // commentInfo: this.state.commentInfo.concat([
-      //   {
-      //     //여기서 받아오는 것은 위에서 선언한 변수명
-      //     id: commentInfo.length + 1,
-      //     userId: "usersssss",
-      //     cmt: this.state.inputVal,
-      //     liked: false,
-      //   },
-      // ]),
-      commentInfo: [
-        ...commentInfo,
+      commentInfo: this.state.commentInfo.concat([
         {
           //여기서 받아오는 것은 위에서 선언한 변수명
           id: commentInfo.length + 1,
@@ -55,7 +46,7 @@ class MainMinsun extends React.Component {
           cmt: this.state.inputVal,
           liked: false,
         },
-      ],
+      ]),
       inputVal: "",
     });
   };
@@ -72,7 +63,6 @@ class MainMinsun extends React.Component {
     this.setState({
       commentInfo: commentsData,
     });
-
     // const { commentInfo } = this.state;
     // const idx = commentInfo.findIndex((el) => el.id === selectedId);
     // this.setState({
@@ -209,20 +199,7 @@ class MainMinsun extends React.Component {
               </section>
             </aside>
             <footer>
-              <div className="linksAbout">
-                <a href="#">소개</a>
-                <a href="#">· 도움말</a>
-                <a href="#">· 홍보 센터</a>
-                <a href="#">· API</a>
-                <a href="#">· 채용 정보 ·</a>
-                <br />
-                <a href="#">개인정보처리방침 ·</a>
-                <a href="#">약관 ·</a>
-                <a href="#">위치 ·</a>
-                <a href="#">인기 계정 ·</a>
-                <a href="#">해시태그 ·</a>
-                <a href="#">언어</a>
-              </div>
+              <FooterMenu />
               <p>© 2020 INSTAGRAM FROM FACEBOOK</p>
             </footer>
           </div>
