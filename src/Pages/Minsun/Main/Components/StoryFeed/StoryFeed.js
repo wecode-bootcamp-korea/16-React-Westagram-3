@@ -17,10 +17,11 @@ class StoryFeed extends React.Component {
   }
 
   render() {
+    const { storyFeeds } = this.state;
     return (
       <section className="storyFeeds">
         <ul className="storyLists">
-          {this.state.storyFeeds.map((el, idx) => {
+          {storyFeeds.map((el, idx) => {
             //map 메소드내에서 return 안에서 써줘야한다
             return (
               //각 리스트에는 unique key값을 가져야한다

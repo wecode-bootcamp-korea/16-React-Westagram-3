@@ -36,20 +36,33 @@ class MainMinsun extends React.Component {
     evt.preventDefault();
     const { commentInfo } = this.state;
     this.setState({
-      commentInfo: this.state.commentInfo.concat([
+      //스프레드 연산자로 표현하는 방법은 노션자료 참고
+      // commentInfo: this.state.commentInfo.concat([
+      //   {
+      //     //여기서 받아오는 것은 위에서 선언한 변수명
+      //     id: commentInfo.length + 1,
+      //     userId: "usersssss",
+      //     cmt: this.state.inputVal,
+      //     liked: false,
+      //   },
+      // ]),
+      commentInfo: [
+        ...commentInfo,
         {
+          //여기서 받아오는 것은 위에서 선언한 변수명
           id: commentInfo.length + 1,
           userId: "usersssss",
           cmt: this.state.inputVal,
           liked: false,
         },
-      ]),
+      ],
       inputVal: "",
     });
   };
 
   //댓글 좋아요 기능
   toggleLike = (selectedId) => {
+    //array는 mutable하기 때문에 idx로 접근해서 값 변경을 하면 변경된 값이 반영된다
     let commentsData = [...this.state.commentInfo];
     const idx = this.state.commentInfo.findIndex((el) => el.id === selectedId);
     commentsData[idx] = {
@@ -59,6 +72,12 @@ class MainMinsun extends React.Component {
     this.setState({
       commentInfo: commentsData,
     });
+
+    // const { commentInfo } = this.state;
+    // const idx = commentInfo.findIndex((el) => el.id === selectedId);
+    // this.setState({
+    //   commentInfo: [...commentInfo, ...commentInfo[idx], liked: !this.state.commentInfo[idx].liked]
+    // })
   };
 
   render() {
