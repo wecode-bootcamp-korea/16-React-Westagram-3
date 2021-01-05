@@ -17,22 +17,22 @@ class Nav extends React.Component {
           </div>
           <ul className="nav_menus">
             <li>
-              <img src="../images/Sunghyun/home.png" alt="home" />
+              <img alt="home" src="../images/Sunghyun/home.png" />
             </li>
             <li>
-              <img src="../images/Sunghyun/airplane.png" alt="message" />
+              <img alt="message" src="../images/Sunghyun/airplane.png" />
             </li>
             <li>
-              <img src="../images/Sunghyun/explore.png" alt="explore" />
+              <img alt="explore" src="../images/Sunghyun/explore.png" />
             </li>
             <li>
-              <img src="../images/Sunghyun/heart.png" alt="heart" />
+              <img alt="heart" src="../images/Sunghyun/heart.png" />
             </li>
             <li>
               <img
                 className="profilePic"
-                src="../images/Sunghyun/me.jpg"
                 alt="profile button"
+                src="../images/Sunghyun/me.jpg"
               />
             </li>
           </ul>

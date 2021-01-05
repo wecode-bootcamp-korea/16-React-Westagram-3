@@ -6,7 +6,7 @@ class MainRight extends React.Component {
     return (
       <div className="mainRight">
         <div className="userProfile">
-          <img src="./images/Sunghyun/me.jpg" alt="profile"></img>
+          <img alt="profile" src="./images/Sunghyun/me.jpg"></img>
         </div>
         <div className="suggestionTitle"></div>
         <div className="suggestedUsers"></div>

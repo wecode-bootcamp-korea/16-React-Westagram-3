@@ -8,7 +8,7 @@ class Login extends React.Component {
     this.state = {
       userId: "",
       userPw: "",
-      hiddenPw: true,
+      isPwHidden: true,
     };
   }
 
@@ -23,7 +23,7 @@ class Login extends React.Component {
 
   toggleHiddenPw = () => {
     this.setState({
-      hiddenPw: !this.state.hiddenPw,
+      isPwHidden: !this.state.isPwHidden,
     });
   };
 
@@ -32,9 +32,6 @@ class Login extends React.Component {
     const checkId = this.state.userId.includes("@");
     const checkPw = this.state.userPw.length > 4;
     if (checkId && checkPw) {
-      // this.setState({
-      //   validLoginInfo: true,
-      // });
       alert("로그인 성공");
       this.props.history.push("/main-sunghyun");
     }
@@ -43,8 +40,8 @@ class Login extends React.Component {
   };
 
   render() {
-    const activateBtn =
-      (this.state.userId.length && this.state.userPw.length) !== 0;
+    const { userId, userPw, isPwHidden } = this.state;
+    const activateBtn = (userId.length && userPw.length) !== 0;
     return (
       <div className="Login">
         <div className="loginContainer">
@@ -58,15 +55,15 @@ class Login extends React.Component {
               placeholder="전화번호, 사용자 이름 또는 이메일"
               onChange={this.handleLoginInfo}
             />
-            <div className="pw-container">
+            <div className="pwContainer">
               <input
-                type={this.state.hiddenPw ? "password" : "text"}
+                type={isPwHidden ? "password" : "text"}
                 id="userPw"
                 placeholder="비밀번호"
                 onChange={this.handleLoginInfo}
               />
               <span className="showPw" onClick={this.toggleHiddenPw}>
-                {this.state.hiddenPw ? "Show" : "Hide"}
+                {isPwHidden ? "Show" : "Hide"}
               </span>
             </div>
             <button
@@ -76,9 +73,9 @@ class Login extends React.Component {
               로그인
             </button>
           </form>
-          <a href="" className="fgtPw">
-            비밀번호를 잊으셨나요?
-          </a>
+          {/* <a href="" className="fgtPw"> */}
+          <span className="fgtPw">비밀번호를 잊으셨나요?</span>
+          {/* </a> */}
           {/* <Link className="signUp" to="/signup">
             회원가입
           </Link> */}

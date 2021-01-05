@@ -10,19 +10,19 @@ class CommentList extends React.Component {
   };
 
   render() {
-    const { commentInfo } = this.props;
+    const { commentInfo, handleLike } = this.props;
     return (
-      <div className="cmtList">
-        {commentInfo.map((ele) => {
+      <div className="commentList">
+        {commentInfo.map((comment) => {
           return (
-            <li key={ele.id}>
-              <span className="userId">{ele.userId}</span>
-              <span className="userComment">{ele.userComment}</span>
-              <button onClick={() => this.props.handleLike(ele.id)}>
+            <li key={comment.id}>
+              <span className="userId">{comment.userId}</span>
+              <span className="userComment">{comment.userComment}</span>
+              <button onClick={() => handleLike(comment.id)}>
                 <img
                   className="like"
                   src={
-                    ele.likeStatus
+                    comment.likeStatus
                       ? "./images/Sunghyun/heartLiked.png"
                       : "./images/Sunghyun/heart.png"
                   }

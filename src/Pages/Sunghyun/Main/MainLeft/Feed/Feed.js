@@ -1,6 +1,7 @@
 import React from "react";
-import "./Feed.scss";
 import CommentList from "./CommentsList/CommentList";
+import COMMENT from "./CommentData";
+import "./Feed.scss";
 
 class Feed extends React.Component {
   constructor() {
@@ -11,6 +12,12 @@ class Feed extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      commentInfo: COMMENT,
+    });
+  }
+
   handleComment = (e) => {
     this.setState({
       inputValue: e.target.value,
@@ -19,14 +26,14 @@ class Feed extends React.Component {
 
   addComment = (e) => {
     e.preventDefault();
-    const { commentInfo } = this.state;
+    const { commentInfo, inputValue } = this.state;
     this.setState({
       commentInfo: commentInfo.concat([
         {
           id: commentInfo.length + 1,
           userId: "tjohnny93",
-          userComment: this.state.inputValue,
-          likedStatus: false,
+          userComment: inputValue,
+          likeStatus: false,
         },
       ]),
       inputValue: "",
@@ -34,47 +41,59 @@ class Feed extends React.Component {
   };
 
   handleLike = (commentId) => {
-    let comment = [...this.state.commentInfo];
-    const id = this.state.commentInfo.findIndex((ele) => ele.id === commentId);
-    comment[id] = {
-      ...comment[id],
-      likeStatus: !comment[id].likeStatus,
-    };
-    this.setState({
-      commentInfo: comment,
+    const { commentInfo } = this.state;
+    commentInfo.map((comment) => {
+      if (comment.id === commentId) {
+        comment.likeStatus = !comment.likeStatus;
+      }
+      return comment;
     });
+
+    this.setState({
+      commentInfo: commentInfo,
+    });
+    // let comment = [...this.state.commentInfo];
+    // const id = this.state.commentInfo.findIndex((ele) => ele.id === commentId);
+    // comment[id] = {
+    //   ...comment[id],
+    //   likeStatus: !comment[id].likeStatus,
+    // };
+    // this.setState({
+    //   commentInfo: comment,
+    // });
   };
 
   render() {
+    const { commentInfo, inputValue } = this.state;
     const activateBtn = this.state.inputValue.length;
     return (
       <article className="feed">
         <div className="feedHeader">
           <img
+            alt="프로필 사진"
             className="feedHeaderProfile"
             src="../images/Sunghyun/me.jpg"
-            alt="프로필 사진"
           />
           <div className="feedHeaderMenu">
             <p className="feedHeaderId">tjohnny93</p>
             <img
+              alt="추가사항 버튼"
               className="feedHeaderMoreOption"
               src="../images/Sunghyun/dots.png"
-              alt="추가사항 버튼"
             />
           </div>
         </div>
         <div className="feedImg">
-          <img src="../images/Sunghyun/feed_img.jpeg" alt="사진" />
+          <img alt="사진" src="../images/Sunghyun/feed_img.jpeg" />
         </div>
         <div className="feedFooter">
-          <img src="../images/Sunghyun/heart.png" alt="" />
-          <img src="../images/Sunghyun/comment.png" alt="" />
-          <img src="../images/Sunghyun/airplane.png" alt="" />
+          <img alt="heart icon" src="../images/Sunghyun/heart.png" />
+          <img alt="comment icon" src="../images/Sunghyun/comment.png" />
+          <img alt="airplane icon" src="../images/Sunghyun/airplane.png" />
           <img
+            alt="bookmark icon"
             className="feedFooterBookmark"
             src="../images/Sunghyun/bookmark.png"
-            alt=""
           />
         </div>
         <div className="feedLikes">
@@ -88,7 +107,7 @@ class Feed extends React.Component {
           <div className="commentsList">
             <ul className="comments">
               <CommentList
-                commentInfo={this.state.commentInfo}
+                commentInfo={commentInfo}
                 handleLike={this.handleLike}
               />
             </ul>
@@ -102,7 +121,7 @@ class Feed extends React.Component {
               type="text"
               placeholder="댓글 달기..."
               onChange={this.handleComment}
-              value={this.state.inputValue}
+              value={inputValue}
             />
             <button
               className={activateBtn ? "active" : "postButton"}

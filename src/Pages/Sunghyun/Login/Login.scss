@@ -30,12 +30,14 @@
       padding: 0 10px;
     }
 
-    .pw-container {
+    .pwContainer {
       position: relative;
       .showPw {
         position: absolute;
         right: 10px;
         top: 12px;
+        color: gray;
+        font-family: 'lobster';
       }
     }
 

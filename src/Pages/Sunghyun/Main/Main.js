@@ -1,10 +1,10 @@
-import "../../../Styles/reset.scss";
-import "./Main.scss";
 import React from "react";
+import { withRouter } from "react-router-dom";
 import MainLeft from "./MainLeft/MainLeft";
 import MainRight from "./MainRight/MainRight";
 import Nav from "./Nav/Nav";
-import { withRouter } from "react-router-dom";
+import "../../../Styles/reset.scss";
+import "./Main.scss";
 
 class Main extends React.Component {
   render() {
