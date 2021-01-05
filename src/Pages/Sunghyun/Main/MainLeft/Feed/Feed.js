@@ -6,12 +6,7 @@ class Feed extends React.Component {
   constructor() {
     super();
     this.state = {
-      commentInfo: [
-        {
-          userId: "tjohnny93",
-          userComment: "댓글창확인",
-        },
-      ],
+      commentInfo: [],
       inputValue: "",
     };
   }
@@ -24,11 +19,29 @@ class Feed extends React.Component {
 
   addComment = (e) => {
     e.preventDefault();
+    const { commentInfo } = this.state;
     this.setState({
-      commentInfo: this.state.commentInfo.concat([
-        { userId: "tjohnny93", userComment: this.state.inputValue },
+      commentInfo: commentInfo.concat([
+        {
+          id: commentInfo.length + 1,
+          userId: "tjohnny93",
+          userComment: this.state.inputValue,
+          likedStatus: false,
+        },
       ]),
       inputValue: "",
+    });
+  };
+
+  handleLike = (commentId) => {
+    let comment = [...this.state.commentInfo];
+    const id = this.state.commentInfo.findIndex((ele) => ele.id === commentId);
+    comment[id] = {
+      ...comment[id],
+      likeStatus: !comment[id].likeStatus,
+    };
+    this.setState({
+      commentInfo: comment,
     });
   };
 
@@ -74,7 +87,10 @@ class Feed extends React.Component {
           </div>
           <div className="commentsList">
             <ul className="comments">
-              <CommentList commentInfo={this.state.commentInfo} />
+              <CommentList
+                commentInfo={this.state.commentInfo}
+                handleLike={this.handleLike}
+              />
             </ul>
           </div>
           <div className="postTime">

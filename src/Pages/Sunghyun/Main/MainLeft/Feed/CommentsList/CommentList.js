@@ -2,13 +2,6 @@ import React from "react";
 import "./CommentList.scss";
 
 class CommentList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      likeStatus: false,
-    };
-  }
-
   toggleLikeBtn = (e) => {
     this.setState({
       likeStatus: !e.target.value,
@@ -20,20 +13,16 @@ class CommentList extends React.Component {
     const { commentInfo } = this.props;
     return (
       <div className="cmtList">
-        {commentInfo.map((ele, idx) => {
+        {commentInfo.map((ele) => {
           return (
-            <li key={idx}>
+            <li key={ele.id}>
               <span className="userId">{ele.userId}</span>
               <span className="userComment">{ele.userComment}</span>
-              <button
-                // className={this.state.likeStatus ? "liked" : ""}
-                onClick={this.toggleLikeBtn}
-                value={false}
-              >
+              <button onClick={() => this.props.handleLike(ele.id)}>
                 <img
                   className="like"
                   src={
-                    this.state.likeStatus
+                    ele.likeStatus
                       ? "./images/Sunghyun/heartLiked.png"
                       : "./images/Sunghyun/heart.png"
                   }
