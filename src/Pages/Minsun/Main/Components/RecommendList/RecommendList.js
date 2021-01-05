@@ -1,8 +1,7 @@
 import React from "react";
+import RecommendItems from "./RecommendItems/RecommendItems";
 import RECOMMEND from "./RecommendData";
 import "./RecommendList.scss";
-
-import RecommendItems from "./RecommendItems/RecommendItems";
 class RecommendList extends React.Component {
   constructor() {
     super();

@@ -7,7 +7,7 @@ class ListItems extends React.Component {
   }
 
   render() {
-    const { id, userId, cmt, liked } = this.props;
+    const { id, userId, cmt, liked, commentLikeHandler } = this.props;
 
     return (
       <li key={id} className="commentItem">
@@ -16,7 +16,7 @@ class ListItems extends React.Component {
         </a>
         <p>{cmt}</p>
         <button
-          onClick={() => this.props.toggleLike(id)}
+          onClick={() => commentLikeHandler(id)}
           className="addLikeToCommentBtn"
           type="button"
         >

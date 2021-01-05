@@ -4,13 +4,13 @@ import "./Lists.scss";
 import ListItems from "./ListItems/ListItems";
 class Lists extends React.Component {
   render() {
-    const { commentInfo } = this.props;
+    const { commentInfo, commentLikeHandler } = this.props;
     return (
       <ul className="commentsList">
         {commentInfo.map((el) => {
           return (
             <ListItems
-              toggleLike={this.props.toggleLike}
+              commentLikeHandler={commentLikeHandler}
               id={el.id}
               userId={el.userId}
               cmt={el.cmt}

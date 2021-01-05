@@ -1,6 +1,6 @@
 import React from "react";
-import "./Login.scss";
 import { withRouter } from "react-router-dom";
+import "./Login.scss";
 class LoginMinsun extends React.Component {
   constructor() {
     super();
@@ -16,7 +16,6 @@ class LoginMinsun extends React.Component {
   //인풋 상태 값 받아오는 함수
   changeInput = (evt) => {
     const { id, value } = evt.target;
-    //when id's input clicked -> evt.target.id === 'id'
     this.setState({
       [id]: value,
     });
@@ -34,7 +33,6 @@ class LoginMinsun extends React.Component {
     evt.preventDefault();
     const checkId = this.state.id.includes("@");
     const checkPw = this.state.pw.length > 4;
-    //조건이 둘다 만족하는 경우
     if (checkId && checkPw) {
       this.setState({
         validLoginInfo: true,

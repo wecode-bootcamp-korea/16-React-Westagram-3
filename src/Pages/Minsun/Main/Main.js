@@ -1,11 +1,12 @@
 import React from "react";
-import "./Main.scss";
 
 import Nav from "../../../Components/Nav/Nav";
-import Lists from "../../../Components/List/Lists";
 import StoryFeed from "./Components/StoryFeed/StoryFeed";
+import Lists from "../../../Components/List/Lists";
 import RecommendList from "./Components/RecommendList/RecommendList";
 import FooterMenu from "./Components/FooterMenu/FooterMenu";
+
+import "./Main.scss";
 class MainMinsun extends React.Component {
   constructor() {
     super();
@@ -26,21 +27,19 @@ class MainMinsun extends React.Component {
   }
 
   // 댓글 인풋 값 함수
-  changeInput = (evt) => {
+  commentInputHandler = (evt) => {
     this.setState({
       inputVal: evt.target.value,
     });
   };
 
-  //댓글 추가 함수(댓글 추가되면서 댓글정보 상태값 업댓)
-  addComment = (evt) => {
+  //댓글 추가 함수
+  addCommentHandler = (evt) => {
     evt.preventDefault();
     const { commentInfo } = this.state;
     this.setState({
-      //스프레드 연산자로 표현하는 방법은 노션자료 참고
       commentInfo: this.state.commentInfo.concat([
         {
-          //여기서 받아오는 것은 위에서 선언한 변수명
           id: commentInfo.length + 1,
           userId: "usersssss",
           cmt: this.state.inputVal,
@@ -52,22 +51,17 @@ class MainMinsun extends React.Component {
   };
 
   //댓글 좋아요 기능
-  toggleLike = (selectedId) => {
-    //array는 mutable하기 때문에 idx로 접근해서 값 변경을 하면 변경된 값이 반영된다
-    let commentsData = [...this.state.commentInfo];
-    const idx = this.state.commentInfo.findIndex((el) => el.id === selectedId);
-    commentsData[idx] = {
-      ...commentsData[idx],
-      liked: !commentsData[idx].liked,
-    };
-    this.setState({
-      commentInfo: commentsData,
+  commentLikeHandler = (selectedId) => {
+    const { commentInfo } = this.state;
+    const newData = commentInfo.map((data) => {
+      if (data.id === selectedId) {
+        data.liked = !data.liked;
+      }
+      return data;
     });
-    // const { commentInfo } = this.state;
-    // const idx = commentInfo.findIndex((el) => el.id === selectedId);
-    // this.setState({
-    //   commentInfo: [...commentInfo, ...commentInfo[idx], liked: !this.state.commentInfo[idx].liked]
-    // })
+    this.setState({
+      commentInfo: newData,
+    });
   };
 
   render() {
@@ -147,7 +141,7 @@ class MainMinsun extends React.Component {
                 </button>
                 <div className="feedComments">
                   <Lists
-                    toggleLike={this.toggleLike}
+                    commentLikeHandler={this.commentLikeHandler}
                     commentInfo={this.state.commentInfo}
                   />
                 </div>
@@ -156,14 +150,14 @@ class MainMinsun extends React.Component {
               <div className="commentContainer">
                 <form className="commentForm" action="#">
                   <input
-                    onChange={this.changeInput}
+                    onChange={this.commentInputHandler}
                     className="commentInput"
                     value={this.state.inputVal}
                     type="text"
                     placeholder="댓글 달기..."
                   />
                   <button
-                    onClick={this.addComment}
+                    onClick={this.addCommentHandler}
                     className="commentBtn"
                     type="submit"
                     disabled={activeCmtBtn ? false : true}
