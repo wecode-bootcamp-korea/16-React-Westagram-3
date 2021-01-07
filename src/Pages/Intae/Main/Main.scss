@@ -1,0 +1,368 @@
+.Main {
+  background-color: #fafafa;
+  box-sizing: border-box;
+  margin: 0;
+
+  /* main */
+  /* story Feeds */
+  .feedContainer {
+    width: 935px;
+    position: relative;
+    top: 54px;
+    padding: 30px 0;
+    margin: 0 auto;
+    display: flex;
+
+    .mainLeftContainer {
+      width: 614px;
+      margin-right: 28px;
+
+      /* main feeds */
+      .mainFeeds {
+        width: 614px;
+        background: #fff;
+        border: 1px solid #dbdbdb;
+        border-radius: 3px;
+        margin-bottom: 60px;
+
+        button {
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .mainFeedProfile {
+          width: 100%;
+          height: 60px;
+          padding: 16px;
+          display: flex;
+          align-items: center;
+
+          a {
+            &:first-child {
+              margin-right: 12px;
+            }
+          }
+
+          .profileImg {
+            display: block;
+            width: 32px;
+            height: 32px;
+            border: 1px solid rgba(230, 230, 230, 0.5);
+            border-radius: 50%;
+          }
+
+          .userId {
+            color: #262626;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+
+          .moreBtn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: #fff;
+            padding: 8px;
+            margin-left: auto;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+
+        .feedImg {
+          margin-bottom: 4px;
+
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+
+        /* feed content */
+        .feedBtns {
+          display: flex;
+          align-items: center;
+
+          .feedBtn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: #fff;
+            padding: 8px;
+
+            &:last-child {
+              margin-left: auto;
+            }
+
+            &:hover {
+              cursor: pointer;
+            }
+
+            img {
+              width: 24px;
+              height: 24px;
+            }
+          }
+        }
+
+        .feedInfoContainer {
+          padding: 0 16px;
+          margin-bottom: 4px;
+          border-bottom: 1px solid #dbdbdb;
+
+          p {
+            font-size: 14px;
+          }
+
+          a {
+            color: #000;
+            text-decoration: none;
+          }
+
+          .feedContent {
+            button {
+              border: none;
+              background: #fff;
+              padding: 0;
+              font-weight: 600;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            .likedUserInfo {
+              display: flex;
+              align-items: center;
+              margin-bottom: 8px;
+
+              img {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                margin-right: 5px;
+              }
+            }
+
+            .postedUserInfo {
+              a {
+                color: #00376b;
+                text-decoration: none;
+              }
+            }
+          }
+
+          .moreCommentsBtn {
+            border: none;
+            background: #fff;
+            color: #b0aa95;
+          }
+
+          .deleteCommentBtn {
+            border: none;
+            background: #fff;
+            position: absolute;
+            right: 20px;
+
+            img {
+              width: 9px;
+              height: 9px;
+            }
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+
+        .postedDate {
+          font-size: 10px;
+          color: #b0aa95;
+          margin: 8px 0;
+        }
+      }
+
+      .commentContainer {
+        width: 100%;
+        height: 55px;
+        padding: 0 16px;
+
+        .commentForm {
+          height: 55px;
+          display: flex;
+          align-items: center;
+
+          input {
+            width: 540px;
+            height: 18px;
+            background: #fff;
+            font-size: 14px;
+            border: none;
+            padding: 0;
+
+            &:focus {
+              outline: none;
+            }
+          }
+
+          .commentBtn {
+            font-size: 14px;
+            font-weight: 700;
+            border: none;
+            background: #fff;
+            color: rgb(0, 149, 246);
+            padding: 0;
+
+            &:disabled {
+              color: #b5e0fc;
+            }
+
+            &:hover {
+              cursor: pointer;
+            }
+
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .mainRightContainer {
+    width: 293px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+
+    button {
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .accountsInfo {
+      margin-bottom: 12px;
+
+      p {
+        color: #262626;
+      }
+
+      span {
+        color: #c7c7c7;
+      }
+
+      .userId {
+        text-decoration: none;
+      }
+
+      .personalAccount {
+        width: 293px;
+        display: flex;
+        align-items: center;
+        margin: 18px 0 10px;
+
+        .profileImg {
+          margin-right: 10px;
+        }
+
+        img {
+          width: 56px;
+          height: 56px;
+          border: 1px solid rgba(230, 230, 230, 0.5);
+          border-radius: 50%;
+        }
+
+        button {
+          border: none;
+          background: #fafafa;
+          color: rgb(0, 149, 246);
+          font-weight: 700;
+          padding: 0;
+          margin-left: auto;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      .recomendation {
+        width: 293px;
+
+        .recomendTitle {
+          display: flex;
+
+          h4 {
+            color: #8e8e8e;
+            font-size: 14px;
+          }
+
+          .viewAllBtn {
+            color: #262626;
+            font-size: 12px;
+            font-weight: 700;
+            border: none;
+            background: #fafafa;
+            padding: 0;
+            margin-left: auto;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .userInfoContainer {
+        display: flex;
+        flex-direction: column;
+
+        .userId {
+          color: #262626;
+          font-size: 14px;
+          font-weight: bold;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .userInfo {
+          font-size: 14px;
+          color: #8e8e8e;
+        }
+      }
+    }
+
+    /* footer */
+    footer {
+      width: 100%;
+      font-size: 11px;
+      color: #c7c7c7;
+    }
+  }
+}
+
+.taged {
+  color: rgb(0, 149, 246);
+}
+
+/* 반응형 웹 구현 */
+@media screen and (max-width: 1000px) {
+  .mainLeftContainer {
+    margin: 0 auto;
+  }
+
+  .mainRightContainer {
+    display: none;
+  }
+}

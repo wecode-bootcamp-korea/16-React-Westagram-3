@@ -1,0 +1,46 @@
+.storyFeeds {
+  width: 614px;
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  padding: 16px 10px;
+  margin-bottom: 24px;
+
+  .storyLists {
+    display: flex;
+    padding-left: 0;
+
+    .storyItems {
+      list-style: none;
+      margin: 0 4px;
+
+      a {
+        color: #262626;
+        font-size: 12px;
+        text-decoration: none;
+
+        .activeStory {
+          width: 64px;
+          height: 64px;
+          border: 2px double transparent;
+          border-radius: 50%;
+          background-image: linear-gradient(white, white),
+            linear-gradient(45deg, #f99848, #cc3c95);
+          background-origin: border-box;
+          background-clip: content-box, border-box;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          img {
+            display: block;
+            width: 56px;
+            height: 56px;
+            border: 1px solid rgba(230, 230, 230, 0.9);
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+}
