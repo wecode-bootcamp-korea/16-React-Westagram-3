@@ -32,42 +32,42 @@ class LoginMinsun extends React.Component {
   //로그인 정보 확인하는 함수
   validateLogin = (evt) => {
     evt.preventDefault();
-    // const checkId = this.state.id.includes("@");
-    // const checkPw = this.state.pw.length > 4;
-    // if (checkId && checkPw) {
-    //   this.setState({
-    //     validLoginInfo: true,
-    //   });
-    //   alert("로그인 성공! (❁´◡`❁)");
-    //   // this.props.history.push("/main-minsun");
-    // }
-    // if (!checkId) {
-    //   this.setState({
-    //     validText: "아이디는 @를 포함합니다.",
-    //   });
-    // }
-    // if (!checkPw) {
-    //   this.setState({
-    //     validText: "비밀번호는 5자 이상 입니다.",
-    //   });
-    // }
+    const checkId = this.state.id.includes("@");
+    const checkPw = this.state.pw.length > 4;
+    if (checkId && checkPw) {
+      this.setState({
+        validLoginInfo: true,
+      });
+      fetch(SIGNIN_API, {
+        method: "POST",
+        body: JSON.stringify({
+          email: this.state.id,
+          password: this.state.pw,
+        }),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          //꼭 결과를 콘솔에 찍어봐서 토큰값이 어느 property로 전달되는지 확인하기!
+          // console.log(result);
+          //토근이 전달되는 property명을 확인 후 꺼내서 로컬스토리지에 저장하기
+          localStorage.setItem("token", result.Authorization);
+        });
+      alert("로그인 성공! (❁´◡`❁)");
+      this.props.history.push("/main-minsun");
+    }
+    if (!checkId) {
+      this.setState({
+        validText: "아이디는 @를 포함합니다.",
+      });
+    }
+    if (!checkPw) {
+      this.setState({
+        validText: "비밀번호는 5자 이상 입니다.",
+      });
+    }
 
     //지금은 로그인 버튼 1개이므로 사인업을 먼저 한 후 사인인 요청을 보낸다(원래는 각 버튼에 따른 api요청을 보냄)
     //로그인을 하게 되면 토큰을 받게되는게 로그인유무를 기억하기 위해 토큰을 저장해둔다
-    fetch(SIGNIN_API, {
-      method: "POST",
-      body: JSON.stringify({
-        email: this.state.id,
-        password: this.state.pw,
-      }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        //꼭 결과를 콘솔에 찍어봐서 토큰값이 어느 property로 전달되는지 확인하기!
-        console.log(result);
-        //토근이 전달되는 property명을 확인 후 꺼내서 로컬스토리지에 저장하기
-        localStorage.setItem("token", result.Authorization);
-      });
   };
 
   checkToken = () => {
